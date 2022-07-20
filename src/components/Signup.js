@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react'
 import {Form, Button, Card, Alert} from 'react-bootstrap'
 import {useAuth} from './Firebase/AuthContext'
 import {Link, useNavigate} from 'react-router-dom'
+import './Login.css'
 
 export default function Signup() {
     const emailRef = useRef();
@@ -33,7 +34,7 @@ export default function Signup() {
 
   return (
     <>
-        <Card>
+        {/* <Card>
             <Card.Body>
                 <h2 className="text-center mb-4">Sign Up</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
@@ -58,8 +59,37 @@ export default function Signup() {
         </Card>
         <div className="w-100 text-center mt-2">
             Already have an account? <Link to="/login">Log In</Link>
+        </div> */}
+
+        <div class="login-box">
+            <h2>Signup</h2>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <form onSubmit={handleSubmit}>
+                <div class="user-box">
+                <input type="email" ref={emailRef} name="" required/>
+                <label>Email</label>
+                </div>
+                <div class="user-box">
+                <input type="password" ref={passwordRef} name="" required/>
+                <label>Password</label>
+                </div>
+                <div class="user-box">
+                <input type="password" ref={passwordConfirmRef} name="" required/>
+                <label>Confirm Password</label>
+                </div>
+                <button type="submit" class="btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Signup
+                </button>
+            </form>
+            <div className="w-100 text-center mt-2">
+            Already have an account? <Link to="/login">Log in</Link>
+            </div>
         </div>
-        
+       
     </>
   )
 }

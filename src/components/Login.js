@@ -56,6 +56,7 @@ export default function Login() {
         </Card> */}
 
         <div class="login-box">
+            {error && <Alert variant="danger">{error}</Alert>}
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div class="user-box">
@@ -77,10 +78,11 @@ export default function Login() {
             <div className='w-100 text-center mt-3'>
             <Link to='/forgot-password'>Forgot Password?</Link>
             </div>
-        </div>
-        {/* <div className="w-100 text-center mt-2">
+            
+            <div className="w-100 text-center mt-2">
             Need an Account? <Link to="/signup">Sign Up</Link>
-        </div> */}
+            </div>
+        </div>
      
     </>
   )
