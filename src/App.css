@@ -38,9 +38,12 @@
 }
 
 .d-flex {
+  align-items: center;
   justify-content: center;
+  
 }
 
 .w-100 {
   margin-top: 1em;
+  color: #03e9f4 !important;
 }

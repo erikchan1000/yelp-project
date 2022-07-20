@@ -29,7 +29,7 @@ export default function ForgotPassword() {
 
   return (
     <>
-        <Card>
+        {/* <Card>
             <Card.Body>
                 <h2 className="text-center mb-4">Password Reset</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
@@ -48,7 +48,32 @@ export default function ForgotPassword() {
         </Card>
         <div className="w-100 text-center mt-2">
             Need an Account? <Link to="/signup">Sign Up</Link>
-        </div>
+        </div> */}
+
+        <div class="login-box">
+            {error && <Alert variant="danger">{error}</Alert>}
+            {message && <Alert variant="success">{message}</Alert>}
+            <h2>Reset Password</h2>
+            <form onSubmit={handleSubmit}>
+                <div class="user-box">
+                <input type="email" ref={emailRef} name="" required/>
+                <label>Email</label>
+                </div>
+                <button disabled={loading} type="submit" class="btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Reset
+                </button>
+            </form>
+            <div className="w-100 text-center mt-2">
+            Already have an account? <Link to="/login">Log in</Link>
+            </div>
+            <div className="w-100 text-center mt-2">
+            Need an Account? <Link to="/signup">Sign Up</Link>
+            </div>
+        </div>        
     </>
   )
 }
