@@ -55,15 +55,15 @@ export default function Login() {
             </Card.Body>
         </Card> */}
 
-        <div class="login-box">
+        <div className="login-box">
             {error && <Alert variant="danger">{error}</Alert>}
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
-                <div class="user-box">
+                <div className="user-box">
                 <input type="email" ref={emailRef} name="" required/>
                 <label>Username</label>
                 </div>
-                <div class="user-box">
+                <div className="user-box">
                 <input type="password" ref={passwordRef} name="" required/>
                 <label>Password</label>
                 </div>

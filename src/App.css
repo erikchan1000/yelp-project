@@ -47,3 +47,17 @@
   margin-top: 1em;
   color: #03e9f4 !important;
 }
+
+.toast-body {
+  color: #000000 !important;
+}
+
+
+.shift {
+  position: relative;
+}
+
+.small, small {
+  margin-left: 250px;
+}
+
