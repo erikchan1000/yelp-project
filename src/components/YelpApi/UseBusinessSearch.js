@@ -27,3 +27,5 @@ export function UseBusinessSearch(term, latitude, longitude) {
 
   return [businesses, amountResults, searchParams, setSearchParams];
 }
+
+

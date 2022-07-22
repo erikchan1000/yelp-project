@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { useAuth } from "./Firebase/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -60,17 +60,9 @@ export default function Dashboard() {
   //use state returns an array, we return the first two items
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
+  const [lat, setLat] = useState(null)
+  const [long, setLong] = useState(null)
 
-  const onMapClick = React.useCallback((e) => {
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-      },
-    ]);
-  }, []);
 
   //use this to prevent re-renders
   const mapRef = React.useRef();
@@ -81,6 +73,8 @@ export default function Dashboard() {
   //panTo
   const panTo = React.useCallback(({ lat, lng }) => {
     console.log(lat, lng);
+    setLat(lat)
+    setLong(lng)
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
   }, []);
@@ -143,6 +137,11 @@ export default function Dashboard() {
       ) : (
         <></>
       )}
+      <h1>
+        {lat}
+        {long}
+        
+      </h1>
       <NavBar />
 
       <Search panTo={panTo} />
@@ -158,7 +157,6 @@ export default function Dashboard() {
         zoom={8}
         center={center}
         options={options}
-        onClick={onMapClick}
         onLoad={onMapLoad}
       >
         {/* Need to add markers here */}
@@ -191,14 +189,17 @@ export default function Dashboard() {
   );
 }
 
+
 //returns the lat lng of the user's position
 function Locate({ panTo }) {
+
   return (
     <button
       className="locate"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
+
             panTo({
               lat: position.coords.latitude,
               lng: position.coords.longitude,
@@ -210,7 +211,9 @@ function Locate({ panTo }) {
     >
       <img src="../../public/compass.svg" alt="compass" />
     </button>
+    
   );
+
 }
 
 //DONE
