@@ -26,6 +26,7 @@ const Notifications = (props) => {
 
   return (
     <>
+    <h1>{isTokenFound}</h1>
     </>
   )
       }

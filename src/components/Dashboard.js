@@ -69,6 +69,7 @@ export default function Dashboard() {
         <></>
       )}
         <NavBar/>
+        <Notifications/>
 
         {error && <Alert variant="danger">{error}</Alert>}
         <button onClick={handleLogOut}>Log Out</button>
