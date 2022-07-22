@@ -6,6 +6,7 @@ import { Alert } from "react-bootstrap";
 import Notifications from "./Notifications";
 import { onMessageListener } from "./Firebase/Firebase";
 import { Toast } from "react-bootstrap";
+import {UseBusinessSearch} from './YelpApi/UseBusinessSearch'
 
 //imports for the map
 import {
@@ -62,6 +63,7 @@ export default function Dashboard() {
   const [selected, setSelected] = React.useState(null);
   const [lat, setLat] = useState(null)
   const [long, setLong] = useState(null)
+  const [businesses, amountResults, searchParams, setSearchParams] = UseBusinessSearch("restaurants", lat, long)
 
 
   //use this to prevent re-renders
@@ -73,6 +75,7 @@ export default function Dashboard() {
   //panTo
   const panTo = React.useCallback(({ lat, lng }) => {
     console.log(lat, lng);
+    console.log(businesses, amountResults, searchParams)
     setLat(lat)
     setLong(lng)
     mapRef.current.panTo({ lat, lng });
@@ -110,6 +113,7 @@ export default function Dashboard() {
 
   return (
     <div>
+      <h1>{businesses}</h1>
       <Notifications/>
       {show ? (
         <Toast
