@@ -12,9 +12,17 @@ import {
   useLoadScript,
   Marker,
   InfoWindow,
-} from "react-google-maps/api";
+} from "@react-google-maps/api";
 
 const libraries = ["places"];
+const mapContainerStyle = {
+  width: "200px",
+  height: "200px",
+};
+const center = {
+  lat: 43,
+  lng: -79,
+};
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -87,7 +95,13 @@ export default function Dashboard() {
         <></>
       )}
       <NavBar />
-      Map
+
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={8}
+        center={center}
+      ></GoogleMap>
+
       {error && <Alert variant="danger">{error}</Alert>}
       <button onClick={handleLogOut}>Log Out</button>
     </div>
