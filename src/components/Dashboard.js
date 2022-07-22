@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import Notifications from "./Notifications";
 import { onMessageListener } from "./Firebase/Firebase";
-import { Toast } from "react-bootstrap";
+import { Toast, Table } from "react-bootstrap";
 import * as api from './YelpApi/api'
 
 //imports for the map
@@ -74,7 +74,7 @@ export default function Dashboard() {
     try {
       const rawData = await api.get("/businesses/search", {term, latitude, longitude});
       const resp = await rawData.json();
-      console.log(resp)
+      console.log("This is resp", resp)
       setBusinesses(resp.businesses);
       setAmountResults(resp.total);
     } catch (err) {
@@ -95,6 +95,8 @@ export default function Dashboard() {
     setLong(lng)
     mapRef.current.setZoom(14);
     fetchData("restaurant", lat, lng)
+    console.log(businesses)
+    console.log(amountResults)
     
   }, [lat, long]);
 
@@ -131,7 +133,15 @@ export default function Dashboard() {
     <div>
 
       <ul>
-        {}
+        {
+          businesses.map((businesses, i) => 
+            <li key={i}>
+              {businesses.name}
+              {businesses.url}
+              <img src={businesses.image_url}></img>
+            </li>
+          )
+        }
       </ul>
       <Notifications/>
       {show ? (
