@@ -63,7 +63,7 @@ export default function Dashboard() {
   const [selected, setSelected] = React.useState(null);
   const [lat, setLat] = useState(null)
   const [long, setLong] = useState(null)
-  const [businesses, amountResults, searchParams, setSearchParams] = UseBusinessSearch("restaurants", lat, long)
+  const [businesses, amountResults, searchParams, setSearchParams] = UseBusinessSearch("restaurants", 37.4001434, -121.8722917)
 
 
   //use this to prevent re-renders
@@ -75,7 +75,7 @@ export default function Dashboard() {
   //panTo
   const panTo = React.useCallback(({ lat, lng }) => {
     console.log(lat, lng);
-    console.log(businesses, amountResults, searchParams)
+    console.log(businesses)
     setLat(lat)
     setLong(lng)
     mapRef.current.panTo({ lat, lng });
@@ -113,7 +113,10 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1>{businesses}</h1>
+
+      <ul>
+        {JSON.stringify(businesses)}
+      </ul>
       <Notifications/>
       {show ? (
         <Toast
