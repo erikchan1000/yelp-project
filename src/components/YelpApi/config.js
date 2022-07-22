@@ -1,3 +1,5 @@
+//I think something has to be prepended here for this to work
+//will test soon
 export const API_BASE_URL = "https://api.yelp.com/v3";
 
 //DO NOT DO IN PRODUCTION

@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "./NavBar";
 import { useAuth } from "./Firebase/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { Alert } from "react-bootstrap";
 import Notifications from "./Notifications";
 import { onMessageListener } from "./Firebase/Firebase";
@@ -26,6 +25,7 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
+import "@reach/combobox/styles.css";
 
 //constants for the map
 const libraries = ["places"];
@@ -57,7 +57,7 @@ export default function Dashboard() {
     libraries,
   });
 
-  //have to set these to the api info, state to set map markers
+  //use state returns an array, we return the first two items
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
 
@@ -208,7 +208,7 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="../public/compass.svg" alt="compass" />
+      <img src="../../public/compass.svg" alt="compass" />
     </button>
   );
 }
@@ -228,6 +228,7 @@ function Search({ panTo }) {
     },
   });
 
+  //input from user is handled here
   const handleInput = (e) => {
     setValue(e.target.value);
   };
@@ -253,7 +254,7 @@ function Search({ panTo }) {
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Search your location"
+          placeholder="Input your destination"
         />
         <ComboboxPopover>
           <ComboboxList>
