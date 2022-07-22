@@ -24,7 +24,7 @@ export const auth = getAuth();
 
 export const messaging = getMessaging(app);
 
-const publicKey = "BGKgvq0fjunMJ-BMVp3yOpUs05ounl2lrxIydQWfihkzHp_-Oe2KZ0y--HsRw8HQcaBF5TGp4zCUlMpyW5xJ6t_xRvEFh_InQUauM"
+const publicKey = "BMVp3yOpUs05ounl2lrxIydQWfihkzHp_-Oe2KZ0y--HsRw8HQcaBF5TGp4zCUlMpyW5xJ6t_xRvEFh_InQUauM"
 
 export const getMyToken = async (setTokenFound) => {
     let currentToken = ''
