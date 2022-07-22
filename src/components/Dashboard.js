@@ -6,7 +6,7 @@ import { Alert } from "react-bootstrap";
 import Notifications from "./Notifications";
 import { onMessageListener } from "./Firebase/Firebase";
 import { Toast, Table } from "react-bootstrap";
-import * as api from './YelpApi/api'
+import * as api from "./YelpApi/api";
 
 //imports for the map
 import {
@@ -61,20 +61,22 @@ export default function Dashboard() {
   //use state returns an array, we return the first two items
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
-  const [lat, setLat] = useState(null)
-  const [long, setLong] = useState(null)
-  const [businesses, setBusinesses] = useState([])
-  const [amountResults, setAmountResults] = useState()
-
-
+  const [lat, setLat] = useState(null);
+  const [long, setLong] = useState(null);
+  const [businesses, setBusinesses] = useState([]);
+  const [amountResults, setAmountResults] = useState();
 
   // const [businesses, amountResults, searchParams, setSearchParams] = UseBusinessSearch("restaurants", 37.400142, -121.8723015)
 
   const fetchData = async (term, latitude, longitude) => {
     try {
-      const rawData = await api.get("/businesses/search", {term, latitude, longitude});
+      const rawData = await api.get("/businesses/search", {
+        term,
+        latitude,
+        longitude,
+      });
       const resp = await rawData.json();
-      console.log("This is resp", resp)
+      console.log("This is resp", resp);
       setBusinesses(resp.businesses);
       setAmountResults(resp.total);
     } catch (err) {
@@ -89,16 +91,18 @@ export default function Dashboard() {
   }, []);
 
   //panTo
-  const panTo = React.useCallback(({ lat, lng }) => {
-    console.log(lat, lng);
-    setLat(lat)
-    setLong(lng)
-    mapRef.current.setZoom(14);
-    fetchData("restaurant", lat, lng)
-    console.log(businesses)
-    console.log(amountResults)
-    
-  }, [lat, long]);
+  const panTo = React.useCallback(
+    ({ lat, lng }) => {
+      console.log(lat, lng);
+      setLat(lat);
+      setLong(lng);
+      mapRef.current.setZoom(14);
+      fetchData("restaurant", lat, lng);
+      console.log(businesses);
+      console.log(amountResults);
+    },
+    [lat, long]
+  );
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -131,19 +135,16 @@ export default function Dashboard() {
 
   return (
     <div>
-
       <ul>
-        {
-          businesses.map((businesses, i) => 
-            <li key={i}>
-              {businesses.name}
-              {businesses.url}
-              <img src={businesses.image_url}></img>
-            </li>
-          )
-        }
+        {businesses.map((businesses, i) => (
+          <li key={i}>
+            {businesses.name}
+            {businesses.url}
+            <img src={businesses.image_url}></img>
+          </li>
+        ))}
       </ul>
-      <Notifications/>
+      <Notifications />
       {show ? (
         <Toast
           onClose={() => setShow(false)}
@@ -174,7 +175,6 @@ export default function Dashboard() {
       <h1>
         {lat}
         {long}
-        
       </h1>
       <NavBar />
 
@@ -223,17 +223,14 @@ export default function Dashboard() {
   );
 }
 
-
 //returns the lat lng of the user's position
 function Locate({ panTo }) {
-
   return (
     <button
       className="locate"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-
             panTo({
               lat: position.coords.latitude,
               lng: position.coords.longitude,
@@ -245,9 +242,7 @@ function Locate({ panTo }) {
     >
       <img src="../../public/compass.svg" alt="compass" />
     </button>
-    
   );
-
 }
 
 //DONE
