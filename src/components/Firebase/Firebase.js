@@ -24,7 +24,7 @@ export const auth = getAuth();
 
 export const messaging = getMessaging(app);
 
-const publicKey = "BMVp3yOpUs05ounl2lrxIydQWfihkzHp_-Oe2KZ0y--HsRw8HQcaBF5TGp4zCUlMpyW5xJ6t_xRvEFh_InQUauM"
+const publicKey = "BMVp3yOpUs05ounl2lrxIydQWfihkzHp_-Oe2KZ0y--HsRw8HQcaBF5TGp4zCUlMpyW5xJ6t_xRvEFh_InQUauM  "
 
 export const getMyToken = async (setTokenFound) => {
     let currentToken = ''
@@ -47,6 +47,7 @@ export const getMyToken = async (setTokenFound) => {
 export const onMessageListener = () =>
   new Promise((resolve) => {
     onMessage(messaging, (payload) => {
+        console.log("Help")
       resolve(payload);
     });
 });

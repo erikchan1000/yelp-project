@@ -82,7 +82,7 @@ export default function Dashboard() {
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
 
-  //console.log(show, notification);
+  console.log(show, notification);
 
   onMessageListener()
     .then((payload) => {
@@ -110,11 +110,12 @@ export default function Dashboard() {
 
   return (
     <div>
+      <Notifications/>
       {show ? (
         <Toast
           onClose={() => setShow(false)}
           show={show}
-          delay={109000}
+          delay={10000}
           autohide
           animation
           style={{

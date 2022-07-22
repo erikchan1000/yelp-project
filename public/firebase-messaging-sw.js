@@ -23,6 +23,11 @@ messaging.onBackgroundMessage((payload) => {
   }
 
   self.registration.showNotification(notificationTitle, notificationOptions)
+  setShow(true);
+  setNotification({
+    title: payload.notification.title,
+    body: payload.notification.body,
+  });
 })
 
 self.addEventListener('notificationclick', (event) => {
