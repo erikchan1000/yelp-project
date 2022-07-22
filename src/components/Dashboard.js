@@ -6,7 +6,7 @@ import { Alert } from "react-bootstrap";
 import Notifications from "./Notifications";
 import { onMessageListener } from "./Firebase/Firebase";
 import { Toast } from "react-bootstrap";
-import {UseBusinessSearch} from './YelpApi/UseBusinessSearch'
+import * as api from './YelpApi/api'
 
 //imports for the map
 import {
@@ -63,8 +63,24 @@ export default function Dashboard() {
   const [selected, setSelected] = React.useState(null);
   const [lat, setLat] = useState(null)
   const [long, setLong] = useState(null)
-  const [businesses, amountResults, searchParams, setSearchParams] = UseBusinessSearch("restaurants", 37.4001434, -121.8722917)
+  const [businesses, setBusinesses] = useState([])
+  const [amountResults, setAmountResults] = useState()
 
+
+
+  // const [businesses, amountResults, searchParams, setSearchParams] = UseBusinessSearch("restaurants", 37.400142, -121.8723015)
+
+  const fetchData = async (term, latitude, longitude) => {
+    try {
+      const rawData = await api.get("/businesses/search", {term, latitude, longitude});
+      const resp = await rawData.json();
+      console.log(resp)
+      setBusinesses(resp.businesses);
+      setAmountResults(resp.total);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   //use this to prevent re-renders
   const mapRef = React.useRef();
@@ -75,12 +91,12 @@ export default function Dashboard() {
   //panTo
   const panTo = React.useCallback(({ lat, lng }) => {
     console.log(lat, lng);
-    console.log(businesses)
     setLat(lat)
     setLong(lng)
-    mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
-  }, []);
+    fetchData("restaurant", lat, lng)
+    
+  }, [lat, long]);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -115,7 +131,7 @@ export default function Dashboard() {
     <div>
 
       <ul>
-        {JSON.stringify(businesses)}
+        {}
       </ul>
       <Notifications/>
       {show ? (
