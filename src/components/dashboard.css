@@ -13,12 +13,8 @@
     font-size: 1.5rem;
     width: 100%;
   }
-  
-  .locate {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    z-index: 10;
+
+  .btn-primary {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
   }

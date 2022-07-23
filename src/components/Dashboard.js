@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { useAuth } from "./Firebase/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { Alert } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import Notifications from "./Notifications";
 import { onMessageListener } from "./Firebase/Firebase";
 import { Toast, Table } from "react-bootstrap";
 import * as api from './YelpApi/api'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './dashboard.css'
 
 //imports for the map
 import {
@@ -177,8 +179,6 @@ export default function Dashboard() {
         
       </h1>
       <NavBar />
-
-      <Search panTo={panTo} />
       <Locate panTo={panTo} />
 
       {/* Map displays here
@@ -218,7 +218,7 @@ export default function Dashboard() {
       </GoogleMap>
 
       {error && <Alert variant="danger">{error}</Alert>}
-      <button onClick={handleLogOut}>Log Out</button>
+      <Button onClick={handleLogOut}>Log Out</Button>
     </div>
   );
 }
@@ -228,8 +228,7 @@ export default function Dashboard() {
 function Locate({ panTo }) {
 
   return (
-    <button
-      className="locate"
+    <Button
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -243,8 +242,8 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="../../public/compass.svg" alt="compass" />
-    </button>
+      Get Current Location!
+    </Button>
     
   );
 
