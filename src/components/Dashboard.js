@@ -6,13 +6,9 @@ import { Alert, Button } from "react-bootstrap";
 import Notifications from "./Notifications";
 import { onMessageListener } from "./Firebase/Firebase";
 import { Toast, Table } from "react-bootstrap";
-<<<<<<< HEAD
 import * as api from './YelpApi/api'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './dashboard.css'
-=======
-import * as api from "./YelpApi/api";
->>>>>>> 710bcef95899efe5f21cdd9332579454b1508244
 
 //imports for the map
 import {
@@ -243,14 +239,9 @@ function Locate({ panTo }) {
         );
       }}
     >
-<<<<<<< HEAD
       Get Current Location!
     </Button>
     
-=======
-      <img src="../../public/compass.svg" alt="compass" />
-    </button>
->>>>>>> 710bcef95899efe5f21cdd9332579454b1508244
   );
 }
 
