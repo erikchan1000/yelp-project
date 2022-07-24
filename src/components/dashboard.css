@@ -1,0 +1,39 @@
+.search {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
+    z-index: 10;
+  }
+  
+  .search input {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    width: 100%;
+  }
+
+  .btn-primary {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .table {
+    --bs-table-color: inherit !important;
+    --bs-table-striped-color: inherit !important;
+    --bs-table-hover-color: red !important;
+    position: relative;
+    right: 32vw;
+    width: 300% !important;
+    height: 20% !important;
+  }
+
+  img {
+    max-width: 200px;
+  }
+
+  th {
+    text-align: center !important;
+    vertical-align: center !important;
+  }
