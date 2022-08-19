@@ -1,4 +1,4 @@
-<img src="Login Page.png" alt="Alt text" title="Optional title">
+
 
 # Getting Started with Create React App
 
